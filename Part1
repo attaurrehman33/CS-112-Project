@@ -1,0 +1,32 @@
+#include<iostream>
+#include<string>
+using namesapce std;
+class user{
+	public:
+		int account_number,pin;
+		cout<<"Enter your account number : "; cin>>account_number;
+			cout<<"Enter the pin : "; cin>>pin;
+			
+};
+class customer:public user{
+	public:
+	 
+		void input(){
+			if(account_number==123456){
+				cout<<"Welcome "<<endl;
+			}
+		}
+};
+class Main_Menu{
+	public:
+		double balance,new_balance;
+};
+class Balance_check:public Main_Menu{
+     public:
+	 cout<<"Your balance is : "<<balance<<endl;	
+};
+
+int main(){
+	user l;
+	l.input();
+}
