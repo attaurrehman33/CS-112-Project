@@ -1,0 +1,211 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+double transaction_limit=200000.0,withdraw_limit=100000;
+class user{
+	public:
+		int account_number,pin,choice;
+		
+		string account_name;
+		void disply(){
+		cout<<"Enter your account number : "; cin>>account_number;
+			cout<<"Enter the pin : "; cin>>pin;
+			cout<<"##################\n         Welcome\n###################### "<<endl;}
+}; 
+   
+class customer:public user{
+	public:
+	 int type;
+		void input(){
+			cout<<"Choose\n1.PayPak                                                 2.UnionPay"<<endl;
+			cout<<"3.Visa         "<<endl;
+			cin>>type;
+				
+			}
+		
+};
+class Admin:public user{
+	public:
+	
+		void a(){
+			cout<<"Welcome Admin"<<endl;
+			cout<<"Do you want to \n1.Edit account Detail                            2.Read Account"<<endl;
+			cout<<"3.Limit Parameters                                            4.Exit from admin"<<endl;
+			cin>>choice;
+				string text;
+			switch(choice){
+				case 1:
+			   edit_account();		
+			break;
+			case 2: {
+			
+			 ifstream File("ATM.txt");
+			 while(getline(File,text)){
+			 	cout<<text<<endl;
+			 	
+			 }		
+			 File.close();
+			break;}
+			case 3:{
+			
+			   limit_Parameters();		
+			break;
+		}
+			default:
+			cout<<"Invalid"<<endl;		
+			}
+			}
+		
+		void limit_Parameters(){
+		int	choice_Limit;
+			cout<<"Do you want to  edit \n1.Transaction Limit                                               2.Withdraw Limit"<<endl; cin>>choice_Limit;
+			if(choice_Limit==1){
+			   transaction_limit=200000;
+				cout<<"The transaction Limit is : Rs "<<transaction_limit<<endl;
+				cout<<"Enter the new Transaction Limit : "; cin>>transaction_limit;
+				cout<<"The new Transaction Limit is : "<<transaction_limit<<endl;
+			}
+			if(choice_Limit==2){
+				withdraw_limit=100000;
+				cout<<"The transaction Limit is : Rs "<<withdraw_limit<<endl;
+				cout<<"Enter the new Transaction Limit : "; cin>>withdraw_limit;
+				cout<<"The new Transaction Limit is : "<<withdraw_limit<<endl;
+			}
+		}
+		void edit_account(){
+			cout<<"Enter the account number you want to change : "; cin>>account_number;
+			cout<<"Enter the name of Account holder : "; cin>>account_name;
+			cout<<"Enter the pin : "; cin>>pin;
+			cout<<"####"<<endl;
+		   cout<<"The account number you want to change is : "<<account_number<<endl;
+			cout<<"The name of Account holder is : "<<account_name<<endl;
+			cout<<"The pin is : "<<pin<<endl;
+		}
+};
+
+
+class Main_Menu{
+	public:
+		double balance=325509,amount;
+		int withdraw,mainmenu,withdraw_money,choice,transfer,bank_choose,account_num;
+		string bank_name,account_name;
+		
+};
+
+class Balance_check:public Main_Menu{
+     public:
+	 void dd(){
+	 cout<<"Your balance is : "<<balance<<endl;	
+	  
+}
+};
+class Transfer:public Main_Menu{
+	public:
+		
+		void tr(){
+			cout<<"Do you want to \n1.Transfer in another account of same bank"<<endl;
+			cout<<"2.Transfer in other bank\n"; cin>>transfer;
+			if(transfer==1){ trr(); 
+			}
+			if(transfer==2){ 
+			cout<<"Choose bank name"<<endl;
+			cout<<"1.Allied Bank                                  2.HBL"<<endl;
+			cout<<"3.Faisal Bank                                  4.Meezan Bank"<<endl;
+			cout<<"5.Easypaisa                                    6.Jazz Cash"<<endl;
+			cout<<"7.Naya Pay                                     8.Sada Pay"<<endl;
+			cout<<"                                               9.Other Bank"<<endl;  cin>>bank_choose;
+			if(bank_choose==9){  cout<<"Enter the bank name : "; cin>>bank_name;
+			} trr();
+            if(bank_choose<9 & bank_choose>0){ 
+			 trr();   			
+			}
+		}}
+		void trr(){
+			cout<<"Enter account number : "; cin>>account_num;
+			cout<<"Enter the account holder name : "; cin>>account_name; getline(cin,account_name);			
+			cout<<"Enter the amount to transfer : "; cin>>amount;
+			cout<<"You have Transfered Rs "<<amount<<" to "<<account_name<<endl;
+		    cout<<"Your remaing balance is Rs"<<balance-amount<<endl<<endl;
+		 
+		}
+};
+
+class Withdraw:public Main_Menu{
+	public:
+		void d(){
+		cout<<"############################################################"<<endl;
+		cout<<"How many amount do you want to withdraw "<<endl;
+		cout<<"1.1000                                                4.25000"<<endl;
+        cout<<"2.5000                                                5.50000"<<endl;
+        cout<<"3.10000                                               6.100000"<<endl;
+        cout<<"                                                      7.Other amount"<<endl;
+       
+        cin>>withdraw;
+      
+		if(withdraw==1){    withdraw_money=1000;                  		}
+		if(withdraw==2){         withdraw_money=5000;               		}
+		if(withdraw==3){      withdraw_money=10000;                  		}
+		if(withdraw==4){      withdraw_money=25000;                  		}
+		if(withdraw==5){       withdraw_money=50000;                 		}
+		if(withdraw==6){       withdraw_money=100000;                 		}
+		if(withdraw==7){           cout<<"enter the amount in multiple of 500 ";  cin>>withdraw_money; if(withdraw_money>withdraw_limit){
+			cout<<"You entered the amount greater than limit"<<endl;
+		}          		}
+		
+		
+			
+           cout<<"Your amount Rs "<<withdraw_money<<" is withdrawn.\nYour remaining balance is Rs "<<balance-withdraw_money<<endl;
+           
+		   		
+		}
+};
+int main(){
+	cout<<"##############################################################################"<<endl;
+	cout<<"                                   Welcome to ATM"<<endl<<"##############################################################################"<<endl;
+	int user1;
+	cout<<"Are you \n1.Customer                       2.Admin"<<endl;  cin>>user1;
+	
+	user l;
+     l.disply(); 
+	 if(user1==1){
+	 customer c1;  c1.input();  }
+	 if(user1==2){
+	 	Admin a;  a.a();
+	 }
+	    
+	Main_Menu m;
+int choice;
+	Withdraw w;
+	int mainmenu;
+
+	cout<<"##############################################################################"<<endl;
+    cout<<"Main Menu \n1.Cash Withdraw\n2.Balance Check\n3.Transfer Money\nChoose: "; cin>>mainmenu;
+			if(mainmenu==1){
+			Withdraw w; w.d();     
+			}
+			if(mainmenu==2){
+			Balance_check b; b.dd();     
+			}
+			if(mainmenu==3){
+			Transfer t; t.tr();     
+			}
+			
+			cout<<"Do you want to go \n1.Main Menu\n2.Exit\n"; cin>>choice;
+			
+			
+		   if(choice==1){ 	cout<<"##############################################################################"<<endl;
+    cout<<"Main Menu \n1.Cash Withdraw\n2.Balance Check\n3.Transfer Money\nChoose: "; cin>>mainmenu;
+			if(mainmenu==1){
+			Withdraw w; w.d();     
+			}
+			if(mainmenu==2){
+			Balance_check b; b.dd();     
+			}
+			if(mainmenu==3){
+			Transfer t; t.tr();     
+			}  }
+		   if(choice==2){} 
+		cout<<endl<<"######################################\n      Thank you for using the ATM\n####################################"<<endl;
+  return 0;
+}
