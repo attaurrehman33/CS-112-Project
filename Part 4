@@ -1,0 +1,80 @@
+class user{
+	public:
+		int account_number,pin,choice;
+		
+		string account_name;
+		void disply(){
+		cout<<"Enter your account number : "; cin>>account_number;
+			cout<<"Enter the pin : "; cin>>pin;
+			cout<<"##################\n         Welcome\n###################### "<<endl;}
+}; 
+   
+class customer:public user{
+	public:
+	 int type;
+		void input(){
+			cout<<"Choose\n1.PayPak                                                 2.UnionPay"<<endl;
+			cout<<"3.Visa         "<<endl;
+			cin>>type;
+				
+			}
+		
+};
+class Admin:public user{
+	public:
+	
+		void a(){
+			cout<<"Welcome Admin"<<endl;
+			cout<<"Do you want to \n1.Edit account Detail                            2.Read Account"<<endl;
+			cout<<"3.Limit Parameters                                            4.Exit from admin"<<endl;
+			cin>>choice;
+				string text;
+			switch(choice){
+				case 1:
+			   edit_account();		
+			break;
+			case 2: {
+			
+			 ifstream File("ATM.txt");
+			 while(getline(File,text)){
+			 	cout<<text<<endl;
+			 	
+			 }		
+			 File.close();
+			break;}
+			case 3:{
+			
+			   limit_Parameters();		
+			break;
+		}
+			default:
+			cout<<"Invalid"<<endl;		
+			}
+			}
+		
+		void limit_Parameters(){
+		int	choice_Limit;
+			cout<<"Do you want to  edit \n1.Transaction Limit                                               2.Withdraw Limit"<<endl; cin>>choice_Limit;
+			if(choice_Limit==1){
+			   transaction_limit=200000;
+				cout<<"The transaction Limit is : Rs "<<transaction_limit<<endl;
+				cout<<"Enter the new Transaction Limit : "; cin>>transaction_limit;
+				cout<<"The new Transaction Limit is : "<<transaction_limit<<endl;
+			}
+			if(choice_Limit==2){
+				withdraw_limit=100000;
+				cout<<"The transaction Limit is : Rs "<<withdraw_limit<<endl;
+				cout<<"Enter the new Transaction Limit : "; cin>>withdraw_limit;
+				cout<<"The new Transaction Limit is : "<<withdraw_limit<<endl;
+			}
+		}
+		void edit_account(){
+			cout<<"Enter the account number you want to change : "; cin>>account_number;
+			cout<<"Enter the name of Account holder : "; cin>>account_name;
+			cout<<"Enter the pin : "; cin>>pin;
+			cout<<"####"<<endl;
+		   cout<<"The account number you want to change is : "<<account_number<<endl;
+			cout<<"The name of Account holder is : "<<account_name<<endl;
+			cout<<"The pin is : "<<pin<<endl;
+		}
+};
