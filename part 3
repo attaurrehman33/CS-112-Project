@@ -1,0 +1,75 @@
+class Main_Menu{
+	public:
+		double balance=325509,amount;
+		int withdraw,mainmenu,withdraw_money,choice,transfer,bank_choose,account_num;
+		string bank_name,account_name;
+		
+};
+
+class Balance_check:public Main_Menu{
+     public:
+	 void dd(){
+	 cout<<"Your balance is : "<<balance<<endl;	
+	  
+}
+};
+class Transfer:public Main_Menu{
+	public:
+		
+		void tr(){
+			cout<<"Do you want to \n1.Transfer in another account of same bank"<<endl;
+			cout<<"2.Transfer in other bank\n"; cin>>transfer;
+			if(transfer==1){ trr(); 
+			}
+			if(transfer==2){ 
+			cout<<"Choose bank name"<<endl;
+			cout<<"1.Allied Bank                                  2.HBL"<<endl;
+			cout<<"3.Faisal Bank                                  4.Meezan Bank"<<endl;
+			cout<<"5.Easypaisa                                    6.Jazz Cash"<<endl;
+			cout<<"7.Naya Pay                                     8.Sada Pay"<<endl;
+			cout<<"                                               9.Other Bank"<<endl;  cin>>bank_choose;
+			if(bank_choose==9){  cout<<"Enter the bank name : "; cin>>bank_name;
+			} trr();
+            if(bank_choose<9 & bank_choose>0){ 
+			 trr();   			
+			}
+		}}
+		void trr(){
+			cout<<"Enter account number : "; cin>>account_num;
+			cout<<"Enter the account holder name : "; cin>>account_name; getline(cin,account_name);			
+			cout<<"Enter the amount to transfer : "; cin>>amount;
+			cout<<"You have Transfered Rs "<<amount<<" to "<<account_name<<endl;
+		    cout<<"Your remaing balance is Rs"<<balance-amount<<endl<<endl;
+		 
+		}
+};
+
+class Withdraw:public Main_Menu{
+	public:
+		void d(){
+		cout<<"############################################################"<<endl;
+		cout<<"How many amount do you want to withdraw "<<endl;
+		cout<<"1.1000                                                4.25000"<<endl;
+        cout<<"2.5000                                                5.50000"<<endl;
+        cout<<"3.10000                                               6.100000"<<endl;
+        cout<<"                                                      7.Other amount"<<endl;
+       
+        cin>>withdraw;
+      
+		if(withdraw==1){    withdraw_money=1000;                  		}
+		if(withdraw==2){         withdraw_money=5000;               		}
+		if(withdraw==3){      withdraw_money=10000;                  		}
+		if(withdraw==4){      withdraw_money=25000;                  		}
+		if(withdraw==5){       withdraw_money=50000;                 		}
+		if(withdraw==6){       withdraw_money=100000;                 		}
+		if(withdraw==7){           cout<<"enter the amount in multiple of 500 ";  cin>>withdraw_money; if(withdraw_money>withdraw_limit){
+			cout<<"You entered the amount greater than limit"<<endl;
+		}          		}
+		
+		
+			
+           cout<<"Your amount Rs "<<withdraw_money<<" is withdrawn.\nYour remaining balance is Rs "<<balance-withdraw_money<<endl;
+           
+		   		
+		}
+};
